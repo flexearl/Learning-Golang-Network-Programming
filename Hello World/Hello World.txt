@@ -1,1 +1,14 @@
+Handler Func Interface:
 
+A 'handler func' function consists of two required parameters
+
+handlerfunc(w http.ResponseWriter, r *http.Request)
+
+w is a type http.ResponseWriter, the w value will be our response to the client. Basically we will write to it and this will be what is used to display to the web page.
+w has a write function, e.g w.Write([]byte("Hello World")) which is just appending an array of bytes to the web page to be displayed.
+Or you have w.Write([]byte("<h1>Hello World</h1>")) which will be read as HTML that can be displayed on the web page.
+You need to convert any parameter into an array of bytes as that is the expected agruement for the .Write function.
+
+
+The r value is a type http.Request, it is sent as a pointer (*) which means it acts as a reference to a http.Request. 
+r will contain information about the request sent from the client(user).
