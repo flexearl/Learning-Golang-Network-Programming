@@ -2,6 +2,9 @@ Handler Func Interface:
 
 A 'handler func' function consists of two required parameters
 
+Your handlerfunc function is used to determine what you will do with the request, and what will need to be displayed.
+
+Required Layout of the handlerfunc function:
 handlerfunc(w http.ResponseWriter, r *http.Request)
 
 w is a type http.ResponseWriter, the w value will be our response to the client. Basically we will write to it and this will be what is used to display to the web page.
@@ -12,3 +15,14 @@ You need to convert any parameter into an array of bytes as that is the expected
 
 The r value is a type http.Request, it is sent as a pointer (*) which means it acts as a reference to a http.Request. 
 r will contain information about the request sent from the client(user).
+
+Your handlerfunc will be passed as a parameter to HandleFunc.
+
+HandleFunc designates which function will be used to respond to the client's HTTP request.
+
+HandleFunc("/", handlerfunc)
+
+The "/" as the first arguement means that handlerfunc is used for all web addresses without additional routes to the web address.
+If for example, another HandleFunc was provided such as HandleFunc("/hello",helloHandlerFunc) then the helloHandlerFunc would be used whenever "/hello" is a route in the web address.
+
+
